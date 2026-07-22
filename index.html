@@ -17,7 +17,6 @@
 <body class="bg-slate-100 text-slate-800 flex flex-col min-h-screen">
 
     <!-- HEADER PREMIUM DENGAN LOGO -->
-    <!-- Saya menggunakan URL logo BKKBN PNG yang bersih dan transparan dari Wikimedia -->
     <header class="bg-gradient-to-r from-blue-900 to-blue-700 text-white p-6 shadow-lg mb-8 rounded-b-2xl flex items-center gap-6">
         <img src="logo_bkkbn_bali2.png" 
              alt="Logo Kemendukbangga BKKBN" 
@@ -31,7 +30,7 @@
     <!-- CONTAINER UTAMA -->
     <main class="flex-grow px-6 max-w-[1400px] mx-auto w-full">
 
-        <!-- KONTROL FILTER (Desain Modern Rounded) -->
+        <!-- KONTROL FILTER -->
         <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
             <div>
                 <label class="block text-xs font-bold uppercase mb-2 text-slate-500">1. Indikator</label>
@@ -67,8 +66,8 @@
             </div>
         </div>
 
-        <!-- SCORECARD AREA (Elegan dengan bayangan halus) -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 mb-8">
+        <!-- SCORECARD AREA -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-center">
                 <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">TOTAL TARGET</h3>
                 <p id="card-target" class="text-4xl font-extrabold mt-2 text-slate-800">0</p>
@@ -77,13 +76,9 @@
                 <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">CAPAIAN KUMULATIF</h3>
                 <p id="card-capaian" class="text-4xl font-extrabold mt-2 text-slate-800">0</p>
             </div>
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-center">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-center border-b-4 border-b-transparent" id="card-persentase-container">
                 <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">% CAPAIAN THD TARGET</h3>
                 <p id="card-persentase" class="text-4xl font-extrabold mt-2">0%</p>
-            </div>
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-center border-b-4 border-b-transparent" id="card-performa-container">
-                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">PERFORMA KINERJA</h3>
-                <p id="card-performa" class="text-4xl font-extrabold mt-2">0%</p>
             </div>
             <div class="bg-rose-50 p-6 rounded-2xl shadow-sm border border-rose-100 flex flex-col justify-center">
                 <h3 class="text-xs font-bold text-rose-400 uppercase tracking-wider">SISA TARGET</h3>
@@ -91,18 +86,21 @@
             </div>
         </div>
 
-        <!-- GRAFIK PERBANDINGAN -->
+        <!-- LEGENDA UTAMA (KUMULATIF) RATA KIRI, TANPA TEKS -->
+        <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 mb-8 flex justify-start">
+            <!-- LEGENDA WARNA DINAMIS -->
+            <div class="flex flex-wrap items-center gap-4 text-xs font-bold text-slate-600 bg-slate-50 px-4 py-2 rounded-full border border-slate-200 shadow-inner">
+                <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full shadow-sm" style="background-color: #3b82f6;"></span> <span id="leg-biru">&ge; 0%</span></div>
+                <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full shadow-sm" style="background-color: #22c55e;"></span> <span id="leg-hijau">0% - 0%</span></div>
+                <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full shadow-sm" style="background-color: #eab308;"></span> <span id="leg-kuning">0% - 0%</span></div>
+                <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full shadow-sm" style="background-color: #ef4444;"></span> <span id="leg-merah">&lt; 0%</span></div>
+            </div>
+        </div>
+
+        <!-- GRAFIK PERBANDINGAN UTAMA -->
         <div class="bg-white rounded-2xl shadow-sm border border-slate-100 mb-8 p-6">
             <div class="flex justify-between items-center mb-6 flex-wrap gap-4 border-b border-slate-100 pb-4">
-                <h2 id="chart-title" class="text-base font-bold uppercase tracking-wider text-slate-800">GRAFIK PERFORMA KINERJA</h2>
-                
-                <!-- LEGENDA WARNA SILAGA YANG RAPI -->
-                <div class="flex items-center gap-4 text-xs font-bold text-slate-600 bg-slate-50 px-4 py-2 rounded-full border border-slate-200 shadow-inner">
-                    <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full shadow-sm" style="background-color: #3b82f6;"></span> &ge;100%</div>
-                    <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full shadow-sm" style="background-color: #22c55e;"></span> 75-99%</div>
-                    <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full shadow-sm" style="background-color: #eab308;"></span> 50-74%</div>
-                    <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full shadow-sm" style="background-color: #ef4444;"></span> &lt;50%</div>
-                </div>
+                <h2 id="chart-title" class="text-base font-bold uppercase tracking-wider text-slate-800">GRAFIK % CAPAIAN KUMULATIF</h2>
             </div>
             <div class="relative h-80 w-full">
                 <canvas id="performaChart"></canvas>
@@ -116,7 +114,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
                     </svg>
-                    DATA DETAIL WILAYAH
+                    DATA DETAIL WILAYAH (KUMULATIF)
                 </h2>
                 <span id="level-indicator" class="bg-blue-500 text-white text-xs px-3 py-1.5 rounded-full font-bold shadow-sm">LEVEL: PROVINSI</span>
             </div>
@@ -127,8 +125,7 @@
                             <th id="th-dinamis" class="p-4">WILAYAH</th>
                             <th class="p-4 text-right">TARGET</th>
                             <th class="p-4 text-right">CAPAIAN</th>
-                            <th class="p-4 text-right">% CAPAIAN</th>
-                            <th class="p-4 text-center w-32">PERFORMA</th>
+                            <th class="p-4 text-center">% CAPAIAN</th>
                             <th class="p-4 text-right text-rose-500">SISA TARGET</th>
                         </tr>
                     </thead>
@@ -137,41 +134,50 @@
             </div>
         </div>
 
-        <!-- ==================== BAGIAN TREND ==================== -->
+        <!-- ==================== BAGIAN TREND (BULANAN) ==================== -->
         <div class="mt-8 pt-10 border-t border-slate-200 mb-12">
             <h2 class="text-xl font-extrabold mb-6 uppercase text-slate-800 flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                 </svg>
-                ANALISIS TREND BULANAN
+                ANALISIS TREND CAPAIAN BULANAN
             </h2>
             
             <!-- GRAFIK TREND -->
             <div class="bg-white rounded-2xl shadow-sm border border-slate-100 mb-8 p-6">
-                <div class="flex justify-between items-center mb-6 border-b border-slate-100 pb-4">
-                    <h2 id="trend-title" class="text-sm font-bold uppercase tracking-wider text-slate-800">GRAFIK PERFORMA TIAP BULAN</h2>
-                    <span class="bg-indigo-50 text-indigo-600 border border-indigo-100 text-xs px-3 py-1 rounded-full font-bold">KUMULATIF S/D DATA TERAKHIR</span>
+                <div class="flex justify-between items-center mb-6 border-b border-slate-100 pb-4 flex-wrap gap-4">
+                    <div>
+                        <h2 id="trend-title" class="text-sm font-bold uppercase tracking-wider text-slate-800">GRAFIK % CAPAIAN TIAP BULAN</h2>
+                        <span class="bg-indigo-50 text-indigo-600 border border-indigo-100 text-xs px-3 py-1 rounded-full font-bold mt-2 inline-block">TARGET IDEAL TIAP BULAN = 8.3%</span>
+                    </div>
                 </div>
-                <div class="relative h-72 w-full">
+                
+                <div class="relative h-72 w-full mb-6">
                     <canvas id="trendChart"></canvas>
+                </div>
+
+                <!-- LEGENDA KHUSUS TREND BULANAN (DI BAWAH GRAFIK) -->
+                <div class="flex flex-wrap items-center justify-center gap-4 text-xs font-bold text-slate-600 bg-slate-50 px-4 py-3 rounded-xl border border-slate-200 shadow-inner">
+                    <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full shadow-sm" style="background-color: #3b82f6;"></span> <span id="trend-leg-biru"></span></div>
+                    <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full shadow-sm" style="background-color: #22c55e;"></span> <span id="trend-leg-hijau"></span></div>
+                    <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full shadow-sm" style="background-color: #eab308;"></span> <span id="trend-leg-kuning"></span></div>
+                    <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full shadow-sm" style="background-color: #ef4444;"></span> <span id="trend-leg-merah"></span></div>
                 </div>
             </div>
 
             <!-- TABEL TREND -->
             <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
                 <div class="bg-slate-100 p-4 border-b border-slate-200">
-                    <h2 class="text-sm font-bold uppercase tracking-wider text-slate-700">TABEL PERKEMBANGAN TREND</h2>
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-slate-700">TABEL PERKEMBANGAN TREND BULANAN</h2>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse" id="trend-table">
                         <thead>
                             <tr class="bg-white border-b border-slate-200 text-xs font-extrabold uppercase tracking-wider text-slate-500">
                                 <th class="p-4">BULAN</th>
-                                <th class="p-4 text-right">TARGET</th>
-                                <th class="p-4 text-right">CAPAIAN KUMULATIF</th>
-                                <th class="p-4 text-right">% CAPAIAN</th>
-                                <th class="p-4 text-center w-32">PERFORMA</th>
-                                <th class="p-4 text-right text-rose-500">SISA TARGET</th>
+                                <th class="p-4 text-right">TARGET 1 TAHUN</th>
+                                <th class="p-4 text-right">CAPAIAN PER BULAN</th>
+                                <th class="p-4 text-center w-40">% CAPAIAN PER BULAN</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-100 text-sm"></tbody>
@@ -189,6 +195,20 @@
             <p class="text-xs mt-2">Sistem Monitoring Terpadu KBKR.</p>
         </div>
     </footer>
+
+    <!-- POP UP (MODAL) DATA KOSONG -->
+    <div id="no-data-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center z-50 transition-opacity">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl max-w-sm w-full mx-4 transform transition-all scale-100">
+            <div class="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            </div>
+            <h3 class="text-xl font-bold text-center text-slate-800 mb-2">Data Belum Tersedia</h3>
+            <p id="no-data-text" class="text-center text-slate-500 mb-6">Data untuk bulan ini belum masuk ke dalam sistem.</p>
+            <button onclick="document.getElementById('no-data-modal').classList.add('hidden')" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl transition-colors">
+                Mengerti
+            </button>
+        </div>
+    </div>
 
     <!-- LOADING SCREEN -->
     <div id="loading" class="fixed inset-0 bg-slate-900/90 backdrop-blur-md flex items-center justify-center z-50 text-white font-bold">
@@ -211,13 +231,18 @@
         let dbMaster = [];
         let myChart = null; 
         let trendChart = null;
-        let lastDataMonthIndex = 0; 
+        let lastDataMonthIndex = -1; 
 
-        function getSilagaColor(value) {
-            if (value >= 100) return '#3b82f6'; 
-            if (value >= 75) return '#22c55e';  
-            if (value >= 50) return '#eab308';  
-            return '#ef4444';                   
+        // Fungsi pewarnaan berdasarkan hitungan Kategori 1, Kategori 2, Kategori 3 ideal target
+        function getSilagaColor(pctCapaian, targetIdealPct) {
+            const kat1 = targetIdealPct;          // Ideal penuh
+            const kat2 = targetIdealPct * 0.75;   // Ideal / 4 * 3
+            const kat3 = targetIdealPct * 0.50;   // Ideal / 4 * 2
+            
+            if (pctCapaian >= kat1) return '#3b82f6'; // Biru (Kategori 1)
+            if (pctCapaian >= kat2) return '#22c55e'; // Hijau (Kategori 2)
+            if (pctCapaian >= kat3) return '#eab308'; // Kuning (Kategori 3)
+            return '#ef4444';                         // Merah (< Kategori 3)
         }
 
         async function fetchDatabase() {
@@ -231,7 +256,6 @@
                 
                 detectLastDataMonth(); 
                 
-                // Menambahkan sedikit delay agar loading screen terlihat smooth
                 setTimeout(() => {
                     document.getElementById('loading').remove();
                 }, 500);
@@ -268,7 +292,8 @@
         }
 
         function detectLastDataMonth() {
-            lastDataMonthIndex = 0;
+            lastDataMonthIndex = -1;
+            // Cek sampai bulan ke berapa data tersebut terisi (>0)
             for (let i = 0; i < 12; i++) {
                 let totalSebulan = dbMaster.reduce((sum, row) => sum + row[namaBulan[i]], 0);
                 if (totalSebulan > 0) {
@@ -352,7 +377,66 @@
             const faskes = document.getElementById('filter-faskes').value;
 
             const indexBulanTerpilih = namaBulan.indexOf(bulan);
+            const isEmptyMonth = indexBulanTerpilih > lastDataMonthIndex;
 
+            // ==========================================
+            // LOGIKA PENGISIAN TEKS LEGENDA TREND STATIS (1/12)
+            // ==========================================
+            const idealPerBulanPct = (1 / 12) * 100;
+            const trendKat1 = idealPerBulanPct;
+            const trendKat2 = idealPerBulanPct * 0.75;
+            const trendKat3 = idealPerBulanPct * 0.50;
+
+            document.getElementById('trend-leg-biru').innerHTML = `&ge; ${trendKat1.toFixed(1)}%`;
+            document.getElementById('trend-leg-hijau').innerHTML = `${trendKat2.toFixed(1)}% - ${(trendKat1 - 0.1).toFixed(1)}%`;
+            document.getElementById('trend-leg-kuning').innerHTML = `${trendKat3.toFixed(1)}% - ${(trendKat2 - 0.1).toFixed(1)}%`;
+            document.getElementById('trend-leg-merah').innerHTML = `&lt; ${trendKat3.toFixed(1)}%`;
+
+            // ==========================================
+            // JIKA DATA BULAN INI KOSONG (MUNCUL POP UP & KOSONGKAN DATA)
+            // ==========================================
+            if (isEmptyMonth) {
+                // Tampilkan Pop Up
+                document.getElementById('no-data-text').innerText = `Data untuk bulan ${namaBulanFull[indexBulanTerpilih]} belum masuk ke dalam sistem.`;
+                document.getElementById('no-data-modal').classList.remove('hidden');
+
+                // Kosongkan Scorecard
+                document.getElementById('card-target').innerText = "0";
+                document.getElementById('card-capaian').innerText = "0";
+                document.getElementById('card-sisa').innerText = "0";
+                document.getElementById('card-persentase').innerText = "0%";
+                document.getElementById('card-persentase').style.color = "#94a3b8"; // abu-abu
+                document.getElementById('card-persentase-container').style.borderBottomColor = "transparent";
+
+                // Kosongkan Legenda Kumulatif
+                document.getElementById('leg-biru').innerHTML = `-`;
+                document.getElementById('leg-hijau').innerHTML = `-`;
+                document.getElementById('leg-kuning').innerHTML = `-`;
+                document.getElementById('leg-merah').innerHTML = `-`;
+
+                // Kosongkan Tabel Utama
+                document.querySelector('#main-table tbody').innerHTML = `<tr><td colspan="5" class="p-8 text-center text-slate-400 font-medium tracking-wide">Data Kosong</td></tr>`;
+                
+                // Kosongkan Grafik Utama
+                if (myChart) myChart.destroy();
+                const ctx = document.getElementById('performaChart').getContext('2d');
+                myChart = new Chart(ctx, { type: 'bar', data: { labels: [], datasets: [] }});
+
+                // Kosongkan Tabel Trend
+                document.querySelector('#trend-table tbody').innerHTML = `<tr><td colspan="4" class="p-8 text-center text-slate-400 font-medium tracking-wide">Data Kosong</td></tr>`;
+
+                // Kosongkan Grafik Trend
+                if (trendChart) trendChart.destroy();
+                const ctxTrend = document.getElementById('trendChart').getContext('2d');
+                trendChart = new Chart(ctxTrend, { type: 'line', data: { labels: [], datasets: [] }});
+
+                // Hentikan fungsi di sini agar data di bawah tidak tergambar
+                return; 
+            }
+
+            // ==========================================
+            // JIKA DATA TERSEDIA, JALANKAN NORMAL
+            // ==========================================
             let dataset = dbMaster.filter(d => d.kategori === kategori);
             let currentLevel = "PROVINSI";
             let groupingKey = "kab";
@@ -376,7 +460,7 @@
             }
 
             document.getElementById('level-indicator').innerText = `LEVEL: ${currentLevel}`;
-            document.getElementById('chart-title').innerText = `GRAFIK PERFORMA KINERJA (${groupingKey.toUpperCase()})`;
+            document.getElementById('chart-title').innerText = `GRAFIK % CAPAIAN KUMULATIF (${groupingKey.toUpperCase()})`;
             
             let thDinamisText = "KABUPATEN / KOTA";
             if (currentLevel === "KABUPATEN") thDinamisText = "KECAMATAN";
@@ -386,6 +470,7 @@
             let totalTarget = 0;
             let totalCapaian = 0;
 
+            // Perhitungan Kumulatif Utama
             dataset.forEach(d => {
                 totalTarget += d.target;
                 let capaianKumulatif = 0;
@@ -395,10 +480,25 @@
             });
             
             const sisaTarget = totalTarget - totalCapaian;
-            const bobot = (indexBulanTerpilih + 1) / 12; 
-            const targetIdealBulanIniPct = bobot * 100;
+            
+            // Hitung target ideal kumulatif berdasarkan bulan terpilih (contoh: Feb = 2/12 * 100)
+            const bobotKumulatif = (indexBulanTerpilih + 1) / 12; 
+            const targetIdealKumulatifPct = bobotKumulatif * 100;
+
+            // ==========================================
+            // UPDATE TEKS LEGENDA KUMULATIF SECARA DINAMIS
+            // ==========================================
+            const kat1 = targetIdealKumulatifPct;
+            const kat2 = targetIdealKumulatifPct * 0.75;
+            const kat3 = targetIdealKumulatifPct * 0.50;
+
+            document.getElementById('leg-biru').innerHTML = `&ge; ${kat1.toFixed(1)}%`;
+            document.getElementById('leg-hijau').innerHTML = `${kat2.toFixed(1)}% - ${(kat1 - 0.1).toFixed(1)}%`;
+            document.getElementById('leg-kuning').innerHTML = `${kat3.toFixed(1)}% - ${(kat2 - 0.1).toFixed(1)}%`;
+            document.getElementById('leg-merah').innerHTML = `&lt; ${kat3.toFixed(1)}%`;
+            // ==========================================
+            
             const pctCapaian = totalTarget > 0 ? (totalCapaian / totalTarget) * 100 : 0;
-            const perfKinerja = targetIdealBulanIniPct > 0 ? (pctCapaian / targetIdealBulanIniPct) * 100 : 0;
 
             document.getElementById('card-target').innerText = totalTarget.toLocaleString('id-ID');
             document.getElementById('card-capaian').innerText = totalCapaian.toLocaleString('id-ID');
@@ -406,14 +506,9 @@
             
             const cardPct = document.getElementById('card-persentase');
             cardPct.innerText = pctCapaian.toFixed(1) + "%";
-            cardPct.style.color = getSilagaColor(pctCapaian);
-
-            const cardPerf = document.getElementById('card-performa');
-            cardPerf.innerText = perfKinerja.toFixed(1) + "%";
-            cardPerf.style.color = getSilagaColor(perfKinerja); 
-            
-            // Efek border bawah pada scorecard performa
-            document.getElementById('card-performa-container').style.borderBottomColor = getSilagaColor(perfKinerja);
+            const warnaScorecard = getSilagaColor(pctCapaian, targetIdealKumulatifPct);
+            cardPct.style.color = warnaScorecard;
+            document.getElementById('card-persentase-container').style.borderBottomColor = warnaScorecard;
 
             const groupedObj = {};
             dataset.forEach(d => {
@@ -428,11 +523,11 @@
                 const c = groupedObj[key].capaian;
                 const s = t - c; 
                 const pCapaian = t > 0 ? (c / t) * 100 : 0;
-                const pKinerja = targetIdealBulanIniPct > 0 ? (pCapaian / targetIdealBulanIniPct) * 100 : 0;
-                return { label: key, target: t, capaian: c, sisa: s, pct: pCapaian, performa: pKinerja, no: groupedObj[key].no };
+                return { label: key, target: t, capaian: c, sisa: s, pct: pCapaian, no: groupedObj[key].no };
             });
 
-            const chartData = [...tableData].sort((a, b) => b.performa - a.performa);
+            // Urutkan berdasarkan % Capaian
+            const chartData = [...tableData].sort((a, b) => b.pct - a.pct);
             
             if (currentLevel === "KECAMATAN" || currentLevel === "FASKES") {
                 tableData.sort((a, b) => a.no - b.no);
@@ -442,8 +537,7 @@
 
             const tbody = document.querySelector('#main-table tbody');
             tbody.innerHTML = tableData.map((d, index) => {
-                const warnaKinerja = getSilagaColor(d.performa);
-                // Zebra striping untuk tabel agar lebih mudah dibaca
+                const warnaKinerja = getSilagaColor(d.pct, targetIdealKumulatifPct);
                 const bgClass = index % 2 === 0 ? 'bg-white' : 'bg-slate-50/50';
                 
                 return `
@@ -451,39 +545,36 @@
                     <td class="p-4 font-semibold text-slate-700">${d.label}</td>
                     <td class="p-4 text-right">${d.target.toLocaleString('id-ID')}</td>
                     <td class="p-4 text-right font-medium">${d.capaian.toLocaleString('id-ID')}</td>
-                    <td class="p-4 text-right font-bold" style="color: ${warnaKinerja}">
-                        ${d.pct.toFixed(1)}%
-                    </td>
                     <td class="p-4 text-center">
                         <span class="inline-block w-full py-1.5 px-2 rounded-md text-white font-bold shadow-sm" style="background-color: ${warnaKinerja}">
-                            ${d.performa.toFixed(1)}%
+                            ${d.pct.toFixed(1)}%
                         </span>
                     </td>
                     <td class="p-4 text-right text-rose-500 font-bold">${d.sisa.toLocaleString('id-ID')}</td>
                 </tr>
             `}).join('');
 
-            renderChart(chartData);
-            renderTrend(dataset);
+            renderChart(chartData, targetIdealKumulatifPct);
+            renderTrend(dataset, idealPerBulanPct);
         }
 
-        function renderChart(dataArr) {
+        function renderChart(dataArr, targetIdealKumulatifPct) {
             const ctx = document.getElementById('performaChart').getContext('2d');
             if (myChart) myChart.destroy();
 
             const labels = dataArr.map(d => d.label);
-            const dataPerforma = dataArr.map(d => parseFloat(d.performa.toFixed(1)));
-            const barColors = dataPerforma.map(v => getSilagaColor(v));
+            const dataPct = dataArr.map(d => parseFloat(d.pct.toFixed(1)));
+            const barColors = dataPct.map(v => getSilagaColor(v, targetIdealKumulatifPct));
 
             myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Performa Kinerja (%)',
-                        data: dataPerforma,
+                        label: '% Capaian',
+                        data: dataPct,
                         backgroundColor: barColors, 
-                        borderRadius: 6, // Ujung batang grafik melengkung
+                        borderRadius: 6,
                         borderSkipped: false
                     }]
                 },
@@ -520,44 +611,38 @@
             });
         }
 
-        function renderTrend(dataset) {
+        function renderTrend(dataset, idealPerBulanPct) {
             const targetAnnual = dataset.reduce((sum, d) => sum + d.target, 0);
             const trendRows = [];
             
             let arrayBulanLabel = [];
-            let arrayPerformaData = [];
+            let arrayPctData = [];
             let arrayPointColors = [];
 
             for (let i = 0; i <= lastDataMonthIndex; i++) {
-                let capaianKumulatifBulanIni = 0;
+                let capaianBulanIni = 0;
                 
                 dataset.forEach(d => {
-                    for (let m = 0; m <= i; m++) capaianKumulatifBulanIni += d[namaBulan[m]];
+                    capaianBulanIni += d[namaBulan[i]]; // HANYA menambahkan data di bulan tersebut (bukan YTD)
                 });
 
-                const sisaBulanIni = targetAnnual - capaianKumulatifBulanIni;
-                const bobotIdeal = (i + 1) / 12;
-                const targetIdealPct = bobotIdeal * 100;
-                const pctCapaian = targetAnnual > 0 ? (capaianKumulatifBulanIni / targetAnnual) * 100 : 0;
-                const perfKinerja = targetIdealPct > 0 ? (pctCapaian / targetIdealPct) * 100 : 0;
+                const pctCapaianBulan = targetAnnual > 0 ? (capaianBulanIni / targetAnnual) * 100 : 0;
 
                 trendRows.push({
                     bulan: namaBulanFull[i],
                     target: targetAnnual,
-                    capaian: capaianKumulatifBulanIni,
-                    sisa: sisaBulanIni,
-                    pct: pctCapaian,
-                    performa: perfKinerja
+                    capaian: capaianBulanIni,
+                    pct: pctCapaianBulan
                 });
 
-                arrayBulanLabel.push(namaBulanFull[i].substring(0,3)); // Singkat nama bulan (JAN, FEB) di grafik
-                arrayPerformaData.push(parseFloat(perfKinerja.toFixed(1)));
-                arrayPointColors.push(getSilagaColor(perfKinerja));
+                arrayBulanLabel.push(namaBulanFull[i].substring(0,3));
+                arrayPctData.push(parseFloat(pctCapaianBulan.toFixed(1)));
+                arrayPointColors.push(getSilagaColor(pctCapaianBulan, idealPerBulanPct));
             }
 
             const tbody = document.querySelector('#trend-table tbody');
             tbody.innerHTML = trendRows.map((d, index) => {
-                const warnaKinerja = getSilagaColor(d.performa);
+                const warnaKinerja = getSilagaColor(d.pct, idealPerBulanPct);
                 const bgClass = index % 2 === 0 ? 'bg-white' : 'bg-slate-50/50';
                 
                 return `
@@ -565,15 +650,11 @@
                     <td class="p-4 font-semibold text-slate-700">${d.bulan}</td>
                     <td class="p-4 text-right">${d.target.toLocaleString('id-ID')}</td>
                     <td class="p-4 text-right font-medium">${d.capaian.toLocaleString('id-ID')}</td>
-                    <td class="p-4 text-right font-bold" style="color: ${warnaKinerja}">
-                        ${d.pct.toFixed(1)}%
-                    </td>
                     <td class="p-4 text-center">
                         <span class="inline-block w-full py-1.5 px-2 rounded-md text-white font-bold shadow-sm" style="background-color: ${warnaKinerja}">
-                            ${d.performa.toFixed(1)}%
+                            ${d.pct.toFixed(1)}%
                         </span>
                     </td>
-                    <td class="p-4 text-right text-rose-500 font-bold">${d.sisa.toLocaleString('id-ID')}</td>
                 </tr>
             `}).join('');
 
@@ -585,8 +666,8 @@
                 data: {
                     labels: arrayBulanLabel,
                     datasets: [{
-                        label: 'Performa Kinerja',
-                        data: arrayPerformaData,
+                        label: '% Capaian Bulanan',
+                        data: arrayPctData,
                         borderColor: '#94a3b8',
                         backgroundColor: 'rgba(59, 130, 246, 0.05)',
                         borderWidth: 2,
@@ -596,7 +677,7 @@
                         pointRadius: 6,
                         pointHoverRadius: 8,
                         fill: true,
-                        tension: 0.3 // Lekukan kurva yang smooth
+                        tension: 0.3
                     }]
                 },
                 options: {
