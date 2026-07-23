@@ -86,24 +86,24 @@
             </div>
         </div>
 
-        <!-- LEGENDA UTAMA (KUMULATIF) RATA KIRI, TANPA TEKS -->
-        <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 mb-8 flex justify-start">
-            <!-- LEGENDA WARNA DINAMIS -->
-            <div class="flex flex-wrap items-center gap-4 text-xs font-bold text-slate-600 bg-slate-50 px-4 py-2 rounded-full border border-slate-200 shadow-inner">
-                <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full shadow-sm" style="background-color: #3b82f6;"></span> <span id="leg-biru">&ge; 0%</span></div>
-                <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full shadow-sm" style="background-color: #22c55e;"></span> <span id="leg-hijau">0% - 0%</span></div>
-                <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full shadow-sm" style="background-color: #eab308;"></span> <span id="leg-kuning">0% - 0%</span></div>
-                <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full shadow-sm" style="background-color: #ef4444;"></span> <span id="leg-merah">&lt; 0%</span></div>
-            </div>
-        </div>
-
-        <!-- GRAFIK PERBANDINGAN UTAMA -->
+        <!-- GRAFIK PERBANDINGAN UTAMA (CAPAIAN KUMULATIF) -->
         <div class="bg-white rounded-2xl shadow-sm border border-slate-100 mb-8 p-6">
             <div class="flex justify-between items-center mb-6 flex-wrap gap-4 border-b border-slate-100 pb-4">
                 <h2 id="chart-title" class="text-base font-bold uppercase tracking-wider text-slate-800">GRAFIK % CAPAIAN KUMULATIF</h2>
             </div>
-            <div class="relative h-80 w-full">
+            
+            <div class="relative h-80 w-full mb-6">
                 <canvas id="performaChart"></canvas>
+            </div>
+            
+            <!-- LEGENDA UTAMA (KUMULATIF) DI BAWAH GRAFIK -->
+            <div class="flex justify-center">
+                <div class="flex flex-wrap items-center justify-center gap-4 text-xs font-bold text-slate-600 bg-slate-50 px-5 py-2.5 rounded-full border border-slate-200 shadow-inner">
+                    <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full shadow-sm" style="background-color: #3b82f6;"></span> <span id="leg-biru">&ge; 0%</span></div>
+                    <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full shadow-sm" style="background-color: #22c55e;"></span> <span id="leg-hijau">0% - 0%</span></div>
+                    <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full shadow-sm" style="background-color: #eab308;"></span> <span id="leg-kuning">0% - 0%</span></div>
+                    <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full shadow-sm" style="background-color: #ef4444;"></span> <span id="leg-merah">&lt; 0%</span></div>
+                </div>
             </div>
         </div>
 
